@@ -36,7 +36,7 @@ When you run `-main`, it will produce a fully-deployable directory called `stati
 Copyright © 2014 Steve Lamb
 GNU GPL v3
 
-** todo
+## Todo
 
 * handle the CA-N CA-S anomolly
 * make main/main runnable from `lein run`.
