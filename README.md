@@ -5,9 +5,17 @@ A webapp for viewing USCF-rated chess tournaments on a map.
 The USCF listings for chess tournaments leave a lot to be desired. It's not possible to search filter by location, other than state, which is not reasonable for most states due to how large they are. It's not possible to search at all.
 
 Personally, I created this for the following reasons:
-1) I live in Pennsylvania and don't enjoy scrolling past tournaments that are more than a four hour drive away.
-2) I learned that I wasn't aware of tournaments happening in NJ just across the river.
-3) Similar to (1), I am only interested in tournaments in NJ that are close to Philadelphia.
+
+1. I live in Pennsylvania and don't enjoy scrolling past tournaments that are more than a four hour drive away.
+2. I learned that I wasn't aware of tournaments happening in NJ just across the river.
+3. Similar to (1), I am only interested in tournaments in NJ that are close to Philadelphia.
+
+## Quickstart
+
+1. Clone this repo.
+2. Run `lein run`
+3. Run `lein cljsbuild once`
+4. Share `static/` with your favorite webserver
 
 ## Prerequisites
 
