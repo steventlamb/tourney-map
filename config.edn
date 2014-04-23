@@ -1,0 +1,34 @@
+{
+;; when dates get processed by the parser, they usually don't have a year
+:implied-year "2014",
+
+:csv-source-url "http://federalgovernmentzipcodes.us/free-zipcode-database-Primary.csv",
+:tourney-url-prefix "http://www.uschess.org/tlas/upcoming.php?STATE=",
+:upcoming-gateway-page-url "http://www.uschess.org/tlas/upcoming.php",
+:tourney-states ["AL" "AK" "AZ" "AR" "CA-N" "CA-S" "CO" "CT" "DE"
+                     "DC" "FL" "GA" "HI" "ID" "IL" "IN" "IA" "KS" "KY"
+                     "LA" "ME" "MD" "MA" "MI" "MN" "MS" "MO" "MT" "NE"
+                     "NV" "NH" "NJ" "NM" "NY" "NC" "ND" "OH" "OK" "OR"
+                     "PA" "RI" "SC" "SD" "TN" "TX" "UT" "VT" "VA" "WA"
+                     "WV" "WI" "WY"],
+
+:ui {
+     :map-id "map-canvas"
+     :state-select-id "state-select"
+     :tile-url "http://{s}.tile.osm.org/{z}/{x}/{y}.png"
+     :map-center [39.96, -75.16]
+     ;; todo: express this in edn via hiccup
+     :attribution "Map data &copy; <a href=\"http://openstreetmap.org\">OpenStreetMap</a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"http://cloudmade.com\">CloudMade</a>"
+}
+
+;; don't store anything that is *actually* private, but keep
+;; semi-private server-side variables here. they'll get merged
+;; into the config, but just for the server side version.
+:private {
+          ;; phase these out. follow a standard resources/ pattern
+          :csv-local-path "dev_data/zipcodes.csv",
+          :zipcodes-local-path "resources/zipcodes.edn",
+          :static-dir "static/",
+          :state-pages-data nil
+          }
+}
