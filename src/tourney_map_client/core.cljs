@@ -4,14 +4,14 @@
   (:require-macros [tourney-map.config :as config]
                    [dommy.macros :refer [sel1]]))
 
+;; read config data into something more usable
 (def config (config/get-config))
-(def map-id ((config :ui) :map-id))
-(def state-select-id ((config :ui) :state-select-id))
-(def tile-url ((config :ui) :tile-url))
-(def attribution ((config :ui) :attribution))
 (def map-center (clj->js ((config :ui) :map-center)))
-(def tileAttrs (clj->js {:maxZoom 18
-                         :attribution attribution}))
+(def map-id (get-in config [:ui :map-id]))
+(def state-select-id (get-in config [:ui :state-select-id]))
+(def tile-url (get-in config [:ui :tile-url]))
+(def attribution (get-in config [:ui :attribution]))
+(def tileAttrs (clj->js {:maxZoom 18 :attribution attribution}))
 
 (def read-state-abbrev #(-> % .-target .-value))
 
