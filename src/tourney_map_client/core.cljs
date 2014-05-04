@@ -13,6 +13,9 @@
 (def attribution (get-in config [:ui :attribution]))
 (def tileAttrs (clj->js {:maxZoom 18 :attribution attribution}))
 
+;; make map global
+(def gis-map (-> js/L (.map map-id) (.setView map-center 8)))
+
 (def read-state-abbrev #(-> % .-target .-value))
 
 (def build-state-url #(str "data/" % ".edn"))
@@ -29,11 +32,9 @@
       (GET {:handler plot-tourneys})))
 
 (defn init! []
-  (let [map (-> js/L (.map map-id) (.setView map-center 8))
-        tile-layer (-> js/L
-                       (.tileLayer tile-url tileAttrs)
-                       (.addTo map))]
-    (dommy/listen! (sel1 "#state-select") :click get-state-data)))
-
+    (-> js/L
+        (.tileLayer tile-url tileAttrs)
+        (.addTo gis-map))
+    (dommy/listen! (sel1 "#state-select") :click get-state-data))
 
 (init!)
