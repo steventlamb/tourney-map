@@ -42,6 +42,7 @@ in config is still correct."
     (java-io/make-parents)
     (spit thing)))
 
+;; TODO: convert this to use native java/clojure, for fun.
 (defn !!delete-static-dir []
   (sh "rm" "-rf" (config :static-dir)))
 

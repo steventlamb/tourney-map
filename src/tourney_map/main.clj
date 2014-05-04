@@ -7,7 +7,6 @@
     (letfn [(println-justified [action description]
               (println (format "%-20s%s" action description)))]
 
-    ;; TODO: convert this to use native java/clojure, for fun.
       (io/!!delete-static-dir)
       (println-justified "DELETED" "static directory before writing to it.")
 
