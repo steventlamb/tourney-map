@@ -15,8 +15,7 @@
         (io/!!get-states-from-upcoming-page)))
     (println-justified "CONFIRMED" "states urls haven't changed.")
 
-    (doseq [tourney-state (config :tourney-states)]
-      (io/!!export-tourneys zips tourney-state))
+    (dorun (pmap #(io/!!export-tourneys zips %) (config :tourney-states)))
     (println-justified "WROTE" "geocoded .edn files to static/data/")
 
     (io/!!write-index)
