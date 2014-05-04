@@ -20,12 +20,23 @@
 
 (def build-state-url #(str "data/" % ".edn"))
 
+(defn randomize-coordinate [coordinate]
+  (let [r (.random js/Math)
+        adjusted-r (- r 0.5)
+        scaled-r (/ adjusted-r 100)
+        adjusted (+ (js/parseFloat coordinate) scaled-r)] adjusted))
+
 (defn plot-tourneys [tourneys]
-  (.log js/console (str tourneys))
-)
+  (let [geocoded-tourneys (filter #(not (or (= (:lat %) "") (= (:lng %) ""))) tourneys)]
+    (doseq [tourney geocoded-tourneys]
+      (let [lat (-> tourney :lat randomize-coordinate)
+            lng (-> tourney :lng randomize-coordinate)]
+        (-> js/L
+            (.marker (clj->js [lat lng]))
+            (.addTo gis-map)
+            (.bindPopup (:body tourney)))))))
 
 (defn get-state-data [event]
-  (.log js/console event)
   (-> event
       read-state-abbrev
       build-state-url
